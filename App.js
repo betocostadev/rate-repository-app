@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Starting my first React-Native App!!</Text>
-      <Text>And now I'm also running on my Phone with Expo Go!</Text>
+      <Text>And now I`&apos;`m also running on my Phone with Expo Go!</Text>
       <StatusBar style="auto" />
     </View>
   );
