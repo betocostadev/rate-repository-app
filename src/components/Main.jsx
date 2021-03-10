@@ -10,12 +10,24 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     backgroundColor: '#cccccc'
   },
+  header: {
+    alignItems: 'center',
+    backgroundColor: 'black'
+  },
+  title: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    fontSize: 18,
+    color: 'whitesmoke'
+  }
 });
 
 const Main = () => {
   return (
     <View style={styles.container}>
-      <Text>Rate Repository Application</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Rate Repository Application</Text>
+      </View>
       <RepositoryList />
     </View>
   );
