@@ -19,8 +19,8 @@ const Main = () => {
       <AppBar />
       <RepositoryList />
     </View>
-    );
-  };
+  );
+};
 
 export default Main;
 
