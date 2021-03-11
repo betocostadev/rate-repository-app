@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, FlatList, StatusBar } from 'react-native';
+import { SafeAreaView, View, StyleSheet, FlatList } from 'react-native';
 
 import RepositoryItem from './RepositoryItem';
 
@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
   itemText: {
     fontSize: 16,
@@ -60,6 +59,17 @@ const repositories = [
     ratingAverage: 0,
     reviewCount: 0,
     ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4',
+  },
+  {
+    id: 'betocosta.learning',
+    fullName: 'react-native/react',
+    description: 'First React Native App based on FullStackOpen',
+    language: 'JavaScript',
+    forksCount: 10,
+    stargazersCount: 1600,
+    ratingAverage: 0,
+    reviewCount: 0,
+    ownerAvatarUrl: 'https://avatars.githubusercontent.com/u/9079952?s=460&u=5aa301ac2fa602cdf2321a5b423fbdb711a9fb7f&v=4',
   },
 ];
 

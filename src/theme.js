@@ -18,6 +18,25 @@ const theme = {
     normal: '400',
     bold: '700',
   },
+  textInput: {
+    borderColor: '#e1e4e8',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    fontSize: 18,
+    color: '#24292e',
+  },
+  flex: {
+    flexRow: {
+      flexDirection: 'row'
+    }
+  },
+  buttons: {
+    largeButton: {
+      flex: 1
+    }
+  }
 };
 
 export default theme;

@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   itemHeaderB: {
-    flex: 0.75
+    flex: 0.75,
+    paddingRight: 2
   },
   itemLanguage: {
     backgroundColor: '#0366d6',
@@ -31,12 +32,14 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 8
   },
-  itemBottom: {
-    paddingBottom: 10
-  },
-  itemLine: {
+  itemBody: {
+    padding: 6,
+    paddingTop: 2,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+  },
+  itemDetail: {
+    alignItems: 'center'
   },
   itemPaddingBottom: {
     paddingBottom: 8
@@ -44,6 +47,22 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({ avtImage, fullName, description, language, stars, forks, reviews, ratings }) => {
+  const displayCount = (count) => {
+    if (count >= 100000) {
+      const str = String(count);
+      return `${str.slice(0,3)}.${str.slice(3,4)}k`;
+    } else if (count < 100000 && count >= 10000) {
+      const str = String(count);
+      return `${str.slice(0,2)}.${str.slice(2,3)}k`;
+    } else if (count < 10000 && count >= 1000) {
+      const str = String(count);
+      return `${str.slice(0,1)}.${str.slice(1,2)}k`;
+    } else {
+      const str = String(count);
+      return str;
+    }
+  };
+
   return (
     <View style={styles.item}>
       <View style={styles.itemHeader}>
@@ -58,17 +77,21 @@ const RepositoryItem = ({ avtImage, fullName, description, language, stars, fork
           </View>
         </View>
       </View>
-      <View style={styles.itemBottom}>
-        <View style={styles.itemLine}>
-          <Text fontSize="subheading" fontWeight="bold">{stars}</Text>
-          <Text fontSize="subheading" fontWeight="bold">{forks}</Text>
-          <Text fontSize="subheading" fontWeight="bold">{reviews}</Text>
-          <Text fontSize="subheading" fontWeight="bold">{ratings}</Text>
-        </View>
-        <View style={styles.itemLine}>
+      <View style={styles.itemBody}>
+        <View style={styles.itemDetail}>
+          <Text fontSize="subheading" fontWeight="bold">{displayCount(stars)}</Text>
           <Text fontSize="subheading" color="textSecondary">Stars</Text>
+        </View>
+        <View style={styles.itemDetail}>
+          <Text fontSize="subheading" fontWeight="bold">{displayCount(forks)}</Text>
           <Text fontSize="subheading" color="textSecondary">Forks</Text>
+        </View>
+        <View style={styles.itemDetail}>
+          <Text fontSize="subheading" fontWeight="bold">{reviews}</Text>
           <Text fontSize="subheading" color="textSecondary">Reviews</Text>
+        </View>
+        <View style={styles.itemDetail}>
+          <Text fontSize="subheading" fontWeight="bold">{ratings}</Text>
           <Text fontSize="subheading" color="textSecondary">Rating</Text>
         </View>
       </View>

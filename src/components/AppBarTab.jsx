@@ -1,19 +1,19 @@
 import React from 'react';
-import { Pressable, Alert } from 'react-native';
+import { Link } from "react-router-native";
 
 import Text from './Text';
 
-const PressableText = props => {
+const Navigate = props => {
   return (
-    <Pressable onPress={() => Alert.alert('working')}>
+    <Link to={ props.name === 'Repositories' ? '/' : '/signin'}>
       <Text fontSize="title" fontWeight="bold" color="textWhiteSmoke">{props.name}</Text>
-    </Pressable>
+    </Link>
   );
 };
 
 const AppBarTab = ({name}) => {
   return (
-    <PressableText name={name}/>
+    <Navigate name={name}/>
   );
 };
 
