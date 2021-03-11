@@ -3,6 +3,7 @@ const theme = {
     textPrimary: '#24292e',
     textSecondary: '#586069',
     textWhiteSmoke: 'whitesmoke',
+    textWhite: 'white',
     primary: '#0366d6',
   },
   fontSizes: {

@@ -1,22 +1,77 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
+import Text from './Text';
 
 const styles = StyleSheet.create({
-  itemText: {
-    fontSize: 16,
+  item: {
+    backgroundColor: 'white',
+    paddingTop: 10,
+    paddingBottom: 10,
   },
+  itemHeader: {
+    flexDirection: 'row',
+    height: 120,
+    paddingTop: 5
+  },
+  itemHeaderA: {
+    flex: 0.25,
+    alignItems: 'center',
+  },
+  itemHeaderB: {
+    flex: 0.75
+  },
+  itemLanguage: {
+    backgroundColor: '#0366d6',
+    padding: 6,
+    borderRadius: 8,
+    alignSelf: 'flex-start'
+  },
+  itemImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 8
+  },
+  itemBottom: {
+    paddingBottom: 10
+  },
+  itemLine: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  itemPaddingBottom: {
+    paddingBottom: 8
+  }
 });
 
-const RepositoryItem = ({ fullName, description, language, stars, forks, reviews, ratings }) => {
+const RepositoryItem = ({ avtImage, fullName, description, language, stars, forks, reviews, ratings }) => {
   return (
     <View style={styles.item}>
-      <Text style={styles.itemText}>Full name: {fullName}</Text>
-      <Text style={styles.itemText}>Description: {description}</Text>
-      <Text style={styles.itemText}>Language: {language}</Text>
-      <Text style={styles.itemText}>Stars: {stars}</Text>
-      <Text style={styles.itemText}>Forks: {forks}</Text>
-      <Text style={styles.itemText}>Reviews: {reviews}</Text>
-      <Text style={styles.itemText}>Rating: {ratings}</Text>
+      <View style={styles.itemHeader}>
+        <View style={styles.itemHeaderA}>
+          <Image style={styles.itemImage} source={{ uri: avtImage}} />
+        </View>
+        <View style={styles.itemHeaderB}>
+          <Text fontWeight="bold" fontSize="title" style={styles.itemPaddingBottom}>{fullName}</Text>
+          <Text fontSize="subheading" color="textSecondary" style={styles.itemPaddingBottom}>{description}</Text>
+          <View style={styles.itemLanguage}>
+            <Text color="textWhite" fontWeight="bold" style={{ alignSelf: 'center'}}>{language}</Text>
+          </View>
+        </View>
+      </View>
+      <View style={styles.itemBottom}>
+        <View style={styles.itemLine}>
+          <Text fontSize="subheading" fontWeight="bold">{stars}</Text>
+          <Text fontSize="subheading" fontWeight="bold">{forks}</Text>
+          <Text fontSize="subheading" fontWeight="bold">{reviews}</Text>
+          <Text fontSize="subheading" fontWeight="bold">{ratings}</Text>
+        </View>
+        <View style={styles.itemLine}>
+          <Text fontSize="subheading" color="textSecondary">Stars</Text>
+          <Text fontSize="subheading" color="textSecondary">Forks</Text>
+          <Text fontSize="subheading" color="textSecondary">Reviews</Text>
+          <Text fontSize="subheading" color="textSecondary">Rating</Text>
+        </View>
+      </View>
     </View>
   );
 };

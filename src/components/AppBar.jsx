@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import Text from './Text';
+
+import AppBarTab from './AppBarTab';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,23 +26,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const PressableText = props => {
-  return (
-    <Pressable onPress={() => Alert.alert('working')}>
-      <Text color="textWhiteSmoke">Repositories</Text>
-    </Pressable>
-  );
-};
+
 
 const AppBar = () => {
   return (
     <View style={styles.container}>
       <View style={styles.itemsContainer}>
         <View style={styles.menuItemLeft}>
-          <Text fontSize="title" fontWeight="bold" color="textWhiteSmoke">Repositories</Text>
+          <AppBarTab name={'Repositories'} />
         </View>
         <View style={styles.menuItemRight}>
-          <PressableText />
         </View>
       </View>
     </View>

@@ -68,6 +68,7 @@ const ItemSeparator = () => <View style={styles.separator} />;
 const RepositoryList = () => {
   const renderItem = ({ item }) => (
     <RepositoryItem
+      avtImage={item.ownerAvatarUrl}
       fullName={item.fullName}
       description={item.description}
       language={item.language}
