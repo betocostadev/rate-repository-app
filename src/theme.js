@@ -27,6 +27,10 @@ const theme = {
     fontSize: 18,
     color: '#24292e',
   },
+  textInputError: {
+    borderColor: '#d73a4a',
+    borderWidth: 1,
+  },
   flex: {
     flexRow: {
       flexDirection: 'row'

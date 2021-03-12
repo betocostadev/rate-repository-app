@@ -6,7 +6,13 @@ import theme from '../theme';
 const TextInput = ({ style, error, ...props }) => {
   // const textInputStyle = [style];
 
-  return <NativeTextInput style={theme.textInput} {...props} />;
+  const textInputStyle = [
+    theme.textInput,
+    error && theme.textInputError,
+  ];
+
+  return <NativeTextInput style={textInputStyle} {...props} />;
+  // return <NativeTextInput style={ error ? (theme.textInput) : (theme.textInput && theme.textInputError)} {...props} />;
 };
 
 export default TextInput;
