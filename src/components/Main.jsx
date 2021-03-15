@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Route, Switch, Redirect } from 'react-router-native';
 
-import AppBar from './AppBar';
+import AppBar from './AppBar/index';
 import RepositoryList from './RepositoryList';
 import SignIn from './SignIn';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, Alert } from 'react-native';
 import { Link } from "react-router-native";
 
-import Text from './Text';
+import Text from '../Shared/Text';
 
 const PressableText = props => {
   let page = '';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-native";
 
-import Text from './Text';
+import Text from '../Shared/Text';
 
 const Navigate = props => {
   return (

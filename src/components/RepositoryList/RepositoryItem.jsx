@@ -1,21 +1,20 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import Text from './Text';
+import Text from '../Shared/Text';
 
 const styles = StyleSheet.create({
   item: {
     backgroundColor: 'white',
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingVertical: 10
   },
   itemHeader: {
     flexDirection: 'row',
-    height: 120,
-    paddingTop: 5
+    paddingVertical: 5,
   },
   itemHeaderA: {
     flex: 0.25,
     alignItems: 'center',
+    justifyContent: 'center'
   },
   itemHeaderB: {
     flex: 0.75,
