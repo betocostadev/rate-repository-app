@@ -3,6 +3,7 @@ import { SafeAreaView, View, StyleSheet, FlatList } from 'react-native';
 
 import useRepositories from '../../hooks/useRepositories';
 import RepositoryItem from './RepositoryItem';
+import Text from '../Shared/Text';
 
 const styles = StyleSheet.create({
   separator: {
@@ -40,6 +41,7 @@ const RepositoryList = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      { !repositoryNodes.length && <View><Text>Loading...</Text></View>}
       <FlatList
         data={repositoryNodes}
         renderItem={renderItem}

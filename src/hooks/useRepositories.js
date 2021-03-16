@@ -7,8 +7,10 @@ const useRepositories = () => {
     fetchPolicy: 'cache-and-network',
   });
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  // if (loading) return 'Loading...';
+  // if (error) return `Error! ${error.message}`;
+  if (loading) return loading;
+  if (error) return error;
 
   return data;
 
