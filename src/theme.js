@@ -10,6 +10,7 @@ const theme = {
     textSecondary: '#586069',
     textWhiteSmoke: 'whitesmoke',
     textWhite: 'white',
+    textDanger: 'red',
     primary: '#0366d6',
   },
   fontSizes: {
