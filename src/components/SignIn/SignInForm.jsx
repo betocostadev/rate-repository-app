@@ -88,7 +88,6 @@ const SignInForm = () => {
     // Handle Sign In
     if (username && username.length && password && password.length) {
       try {
-        console.log('will sign in now');
         await signIn({ username, password });
       } catch (e) {
         errorWarning(e);
