@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
+import { useHistory } from 'react-router-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -70,6 +71,7 @@ const SignInForm = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [signIn] = useSignIn();
+  const history = useHistory();
 
   const errorWarning = e => {
     setError(true);
@@ -88,7 +90,12 @@ const SignInForm = () => {
     // Handle Sign In
     if (username && username.length && password && password.length) {
       try {
-        await signIn({ username, password });
+        const login = await signIn({ username, password });
+
+        if (login && login.message) {
+          errorWarning(login);
+        } else setTimeout(() => { history.push('/'); }, 50);
+
       } catch (e) {
         errorWarning(e);
         console.log(e);
