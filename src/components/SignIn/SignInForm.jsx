@@ -3,8 +3,6 @@ import { View, Button, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import AuthStorage from '../../utils/authStorage';
-
 import useSignIn from '../../hooks/useSignIn';
 import Text from '../Shared/Text';
 import theme from '../../theme';
@@ -85,32 +83,13 @@ const SignInForm = () => {
     }, 5000);
   };
 
-  const storeCredentials = async credentials => {
-    console.log('The credentials to set');
-    console.log(credentials);
-    try {
-      const auth = new AuthStorage('user');
-      await auth.setAccessToken(credentials);
-      console.log('user?, lets get the item');
-      const theAuth = await auth.getAccessToken();
-      console.log('the auth is:', theAuth);
-      console.log('remove the user');
-      await auth.removeAccessToken();
-
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const onSubmit = async values => {
     const { username, password } = values;
     // Handle Sign In
     if (username && username.length && password && password.length) {
       try {
-        const { data } = await signIn({ username, password });
-        if (data) {
-          await storeCredentials(data.authorize.accessToken);
-        }
+        console.log('will sign in now');
+        await signIn({ username, password });
       } catch (e) {
         errorWarning(e);
         console.log(e);

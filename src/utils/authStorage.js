@@ -7,37 +7,31 @@ class AuthStorage {
 
   async getAccessToken() {
     const credentials = await AsyncStorage.getItem(
-      `${this.namespace}:user`
+      `${this.namespace}:credentials`
     );
 
-    return credentials ? JSON.parse(credentials): '';
+    return credentials ? JSON.parse(credentials): [];
   }
 
   async setAccessToken(accessToken) {
-    const currentUser = await this.getAccessToken();
-    if (!currentUser) {
-      console.log('No user stored');
-    }
-    const newUser = accessToken;
 
-    await AsyncStorage.setItem(
-      `${this.namespace}:user`,
-      JSON.stringify(newUser),
-    );
     const allKeys = await AsyncStorage.getAllKeys();
     console.log(allKeys);
-    const theUser = await AsyncStorage.getItem('user');
-    console.log(theUser);
 
+    return await AsyncStorage.setItem(
+      `${this.namespace}:credentials`, JSON.stringify(accessToken),
+    );
+    // console.log('Set acess Token - Check for auth:credentials');
+    // const theUser = await AsyncStorage.getItem(`${this.namespace}:credentials`);
+    // console.log(theUser);
   }
 
   async removeAccessToken() {
-    console.log('will remove the user');
-    await AsyncStorage.removeItem(`${this.namespace}:user`);
-    const allKeys = await AsyncStorage.getAllKeys();
-    console.log(allKeys);
-    const theUser = await AsyncStorage.getItem('user');
-    console.log(theUser);
+    await AsyncStorage.removeItem(`${this.namespace}:credentials`);
+    // await AsyncStorage.clear();
+    // console.log('After removing');
+    // const allKeys = await AsyncStorage.getAllKeys();
+    // console.log(allKeys);
   }
 }
 
