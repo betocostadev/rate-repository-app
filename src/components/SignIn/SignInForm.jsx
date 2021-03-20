@@ -94,7 +94,7 @@ const SignInForm = () => {
 
         if (login && login.message) {
           errorWarning(login);
-        } else setTimeout(() => { history.push('/'); }, 50);
+        } else setTimeout(() => { history.push('/'); }, 0);
 
       } catch (e) {
         errorWarning(e);

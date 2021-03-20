@@ -34,15 +34,13 @@ const AppBar = () => {
   const { data } = useQuery(AUTHORIZED_USER);
   const history = useHistory();
 
-  const authorizedUser = data ? data.authorizedUser : undefined;
-  console.log(authorizedUser);
+  const authorizedUser = data ? data.authorizedUser : null;
 
   const onSignOut = async () => {
-    const accessToken = await authStorage.getAccessToken();
-    console.log(accessToken);
     await authStorage.removeAccessToken();
     apolloClient.resetStore();
-    setTimeout(() => { history.push('/'); }, 0);
+
+    setTimeout(() => { history.push('/signin'); }, 0);
   };
 
 

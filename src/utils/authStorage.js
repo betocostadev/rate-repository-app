@@ -6,11 +6,6 @@ class AuthStorage {
   }
 
   async getAccessToken() {
-    const test = await AsyncStorage.getItem(
-      `${this.namespace}`
-    );
-    console.log('auth?');
-    console.log(test);
     const credentials = await AsyncStorage.getItem(
       `${this.namespace}:credentials`
     );
@@ -26,7 +21,6 @@ class AuthStorage {
   }
 
   async removeAccessToken() {
-    console.log('removeAccessToken');
     return await AsyncStorage.removeItem(`${this.namespace}:credentials`);
     // return await AsyncStorage.clear();
     // const allKeys = await AsyncStorage.getAllKeys();
