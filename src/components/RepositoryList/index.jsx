@@ -1,7 +1,8 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, FlatList } from 'react-native';
+import { SafeAreaView, View, StyleSheet } from 'react-native';
 
 import useRepositories from '../../hooks/useRepositories';
+import RepositoryListContainer from './RepositoryListContainer';
 import RepositoryItem from './RepositoryItem';
 import Text from '../Shared/Text';
 
@@ -42,12 +43,7 @@ const RepositoryList = () => {
   return (
     <SafeAreaView style={styles.container}>
       { !repositoryNodes.length && <View><Text>Loading...</Text></View>}
-      <FlatList
-        data={repositoryNodes}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        ItemSeparatorComponent={ItemSeparator}
-      />
+      <RepositoryListContainer repositories={repositories} ItemSeparator={ItemSeparator} renderItem={renderItem} />
     </SafeAreaView>
   );
 };
