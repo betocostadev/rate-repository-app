@@ -29,6 +29,7 @@ const RepositoryList = () => {
 
   const renderItem = ({ item }) => (
     <RepositoryItem
+      id={item.id}
       avtImage={item.ownerAvatarUrl}
       fullName={item.fullName}
       description={item.description}

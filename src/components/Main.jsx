@@ -1,10 +1,13 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Route, Switch, Redirect } from 'react-router-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { Route, Switch, Redirect, useParams } from 'react-router-native';
 
 import AppBar from './AppBar/index';
 import RepositoryList from './RepositoryList';
+import RepositoryItem from './RepositoryList/RepositoryItem';
 import SignIn from './SignIn';
+
+import useRepository from '../hooks/useRepository';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,16 +17,37 @@ const styles = StyleSheet.create({
   }
 });
 
+const Repository = () => {
+  const { id } = useParams();
+  const { repository } = useRepository(id);
+
+  console.log('im called, repository is')
+  console.log(repository)
+
+  if (!repository) return null
+
+
+  return (
+    <View>
+      <Text>Found a repository, the ID is: {repository.id}</Text>
+    </View>
+  )
+
+}
+
 const Main = () => {
   return (
     <View style={styles.container}>
       <AppBar />
       <Switch>
-        <Route path="/signin" exact>
-          <SignIn />
-        </Route>
         <Route path="/" exact>
           <RepositoryList />
+        </Route>
+        <Route path="/:id">
+          <Repository />
+        </Route>
+        <Route path="/signin" exact>
+          <SignIn />
         </Route>
         <Redirect to="/" />
       </Switch>

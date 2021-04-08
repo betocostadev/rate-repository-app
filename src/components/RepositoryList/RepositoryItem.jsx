@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, TouchableHighlight } from 'react-native';
+import { useHistory, useParams } from 'react-router-native';
 import Text from '../Shared/Text';
 
 const styles = StyleSheet.create({
@@ -45,7 +46,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const RepositoryItem = ({ avtImage, fullName, description, language, stars, forks, reviews, ratings }) => {
+const RepositoryItem = ({ id, avtImage, fullName, description, language, stars, forks, reviews, ratings }) => {
+  const history = useHistory();
+
   const displayCount = (count) => {
     if (count >= 100000) {
       const str = String(count);
@@ -62,39 +65,49 @@ const RepositoryItem = ({ avtImage, fullName, description, language, stars, fork
     }
   };
 
+  const repositorySelect = () => {
+    console.log(`
+    =============================================
+    THE ID IS: ${id}
+    =============================================`)
+    history.push(`/${id}`);
+  }
+
   return (
-    <View style={styles.item}>
-      <View style={styles.itemHeader}>
-        <View style={styles.itemHeaderA}>
-          <Image style={styles.itemImage} source={{ uri: avtImage}} />
+    <TouchableHighlight onPress={repositorySelect}>
+      <View style={styles.item}>
+        <View style={styles.itemHeader}>
+          <View style={styles.itemHeaderA}>
+            <Image style={styles.itemImage} source={{ uri: avtImage}} />
+          </View>
+          <View style={styles.itemHeaderB}>
+            <Text fontWeight="bold" fontSize="title" style={styles.itemPaddingBottom}>{fullName}</Text>
+            <Text fontSize="subheading" color="textSecondary" style={styles.itemPaddingBottom}>{description}</Text>
+            <View style={styles.itemLanguage}>
+              <Text color="textWhite" fontWeight="bold" style={{ alignSelf: 'center'}}>{language}</Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.itemHeaderB}>
-          <Text fontWeight="bold" fontSize="title" style={styles.itemPaddingBottom}>{fullName}</Text>
-          <Text fontSize="subheading" color="textSecondary" style={styles.itemPaddingBottom}>{description}</Text>
-          <View style={styles.itemLanguage}>
-            <Text color="textWhite" fontWeight="bold" style={{ alignSelf: 'center'}}>{language}</Text>
+        <View style={styles.itemBody}>
+          <View style={styles.itemDetail}>
+            <Text fontSize="subheading" fontWeight="bold">{displayCount(stars)}</Text>
+            <Text fontSize="subheading" color="textSecondary">Stars</Text>
+          </View>
+          <View style={styles.itemDetail}>
+            <Text fontSize="subheading" fontWeight="bold">{displayCount(forks)}</Text>
+            <Text fontSize="subheading" color="textSecondary">Forks</Text>
+          </View>
+          <View style={styles.itemDetail}>
+            <Text fontSize="subheading" fontWeight="bold">{reviews}</Text>
+            <Text fontSize="subheading" color="textSecondary">Reviews</Text>
+          </View>
+          <View style={styles.itemDetail}>
+            <Text fontSize="subheading" fontWeight="bold">{ratings}</Text>
+            <Text fontSize="subheading" color="textSecondary">Rating</Text>
           </View>
         </View>
       </View>
-      <View style={styles.itemBody}>
-        <View style={styles.itemDetail}>
-          <Text fontSize="subheading" fontWeight="bold">{displayCount(stars)}</Text>
-          <Text fontSize="subheading" color="textSecondary">Stars</Text>
-        </View>
-        <View style={styles.itemDetail}>
-          <Text fontSize="subheading" fontWeight="bold">{displayCount(forks)}</Text>
-          <Text fontSize="subheading" color="textSecondary">Forks</Text>
-        </View>
-        <View style={styles.itemDetail}>
-          <Text fontSize="subheading" fontWeight="bold">{reviews}</Text>
-          <Text fontSize="subheading" color="textSecondary">Reviews</Text>
-        </View>
-        <View style={styles.itemDetail}>
-          <Text fontSize="subheading" fontWeight="bold">{ratings}</Text>
-          <Text fontSize="subheading" color="textSecondary">Rating</Text>
-        </View>
-      </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 
