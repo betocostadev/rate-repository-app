@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const RepositoryItem = ({ id, avtImage, fullName, description, language, stars, forks, reviews, ratings }) => {
+const RepositoryItem = ({ singleItem, id, avtImage, fullName, description, language, stars, forks, reviews, ratings }) => {
   const history = useHistory();
 
   const displayCount = (count) => {
@@ -101,7 +101,10 @@ const RepositoryItem = ({ id, avtImage, fullName, description, language, stars, 
             <Text fontSize="subheading" fontWeight="bold">{ratings}</Text>
             <Text fontSize="subheading" color="textSecondary">Rating</Text>
           </View>
-        </View>
+          </View>
+          { singleItem && <View>
+            <Text fontSize="subheading" color="textSecondary">Single Repo</Text>
+          </View>}
       </View>
     </TouchableHighlight>
   );

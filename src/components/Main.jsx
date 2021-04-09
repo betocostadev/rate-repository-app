@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Route, Switch, Redirect, useParams } from 'react-router-native';
 
 import AppBar from './AppBar/index';
@@ -25,9 +25,18 @@ const Repository = () => {
   if (!repository) return <ScreenLoader />
 
   return (
-    <View>
-      <Text>Found a repository, the ID is: {repository.id}</Text>
-    </View>
+    <RepositoryItem
+      singleItem={true}
+      id={repository.id}
+      avtImage={repository.ownerAvatarUrl}
+      fullName={repository.fullName}
+      description={repository.description}
+      language={repository.language}
+      stars={repository.stargazersCount}
+      forks={repository.forksCount}
+      reviews={repository.reviewCount}
+      ratings={repository.ratingAverage}
+    />
   )
 
 }
