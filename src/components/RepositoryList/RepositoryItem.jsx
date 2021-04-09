@@ -66,10 +66,6 @@ const RepositoryItem = ({ id, avtImage, fullName, description, language, stars, 
   };
 
   const repositorySelect = () => {
-    console.log(`
-    =============================================
-    THE ID IS: ${id}
-    =============================================`)
     history.push(`/${id}`);
   }
 

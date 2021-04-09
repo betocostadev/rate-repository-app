@@ -5,6 +5,7 @@ import useRepositories from '../../hooks/useRepositories';
 import RepositoryListContainer from './RepositoryListContainer';
 import RepositoryItem from './RepositoryItem';
 import Text from '../Shared/Text';
+import ScreenLoader from '../ScreenLoader'
 
 const styles = StyleSheet.create({
   separator: {
@@ -43,7 +44,7 @@ const RepositoryList = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      { !repositoryNodes.length && <View><Text>Loading...</Text></View>}
+      { !repositoryNodes.length && <ScreenLoader />}
       <RepositoryListContainer repositories={repositories} ItemSeparator={ItemSeparator} renderItem={renderItem} />
     </SafeAreaView>
   );

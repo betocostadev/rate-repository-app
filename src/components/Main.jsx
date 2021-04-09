@@ -6,6 +6,7 @@ import AppBar from './AppBar/index';
 import RepositoryList from './RepositoryList';
 import RepositoryItem from './RepositoryList/RepositoryItem';
 import SignIn from './SignIn';
+import ScreenLoader from '../components/ScreenLoader';
 
 import useRepository from '../hooks/useRepository';
 
@@ -21,11 +22,7 @@ const Repository = () => {
   const { id } = useParams();
   const { repository } = useRepository(id);
 
-  console.log('im called, repository is')
-  console.log(repository)
-
-  if (!repository) return null
-
+  if (!repository) return <ScreenLoader />
 
   return (
     <View>
