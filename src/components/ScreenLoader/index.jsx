@@ -1,28 +1,7 @@
 import React, { useRef }  from 'react';
-import { StyleSheet, View, Dimensions, Animated } from 'react-native';
+import { View, Animated } from 'react-native';
 import Text from '../Shared/Text';
-
-
-const styles = StyleSheet.create({
-  container: {
-    width: Dimensions.get('window').width,
-    backgroundColor: '#fff',
-    height: Dimensions.get('window').height,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  loader: {
-    borderStyle: 'solid',
-    borderWidth: 16,
-    borderColor: '#f3f3f3',
-    borderRadius: 100,
-    borderTopWidth: 16,
-    borderTopColor: '#3498db',
-    width: 120,
-    height: 120,
-    transform: [{ rotate: '45deg'}]
-  }
-});
+import theme from '../../theme'
 
 const SpinAnimation = (props) => {
   const spinValue = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
@@ -45,7 +24,7 @@ const SpinAnimation = (props) => {
 
   return (
     <Animated.View
-      style={ styles.loader, {transform: [{rotate: spin}] }}
+      style={{transform: [{rotate: spin}] }}
     >
       {props.children}
     </Animated.View>
@@ -55,9 +34,9 @@ const SpinAnimation = (props) => {
 
 const ScreenLoader = () => {
   return (
-    <View style={styles.container}>
+    <View style={theme.spinLoader.container}>
       <SpinAnimation>
-        <View style={styles.loader} />
+        <View style={theme.spinLoader.loader} />
       </SpinAnimation>
       <Text style={{ paddingTop: 20}} color="textSecondary" fontsize="title" fontWeight="bold">Loading...</Text>
     </View>

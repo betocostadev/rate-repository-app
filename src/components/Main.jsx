@@ -36,6 +36,7 @@ const Repository = () => {
       forks={repository.forksCount}
       reviews={repository.reviewCount}
       ratings={repository.ratingAverage}
+      url={repository.url}
     />
   )
 

@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 
 // const defaultFont = () => {
 //   return Platform.OS === 'android' ? 'Roboto' : Platform.OS === 'ios' ? 'Arial' : 'System';
@@ -50,6 +50,26 @@ const theme = {
   buttons: {
     largeButton: {
       flex: 1
+    }
+  },
+  spinLoader: {
+    container: {
+      width: Dimensions.get('window').width,
+      backgroundColor: '#fff',
+      height: Dimensions.get('window').height,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    loader: {
+      borderStyle: 'solid',
+      borderWidth: 16,
+      borderColor: '#f3f3f3',
+      borderRadius: 100,
+      borderTopWidth: 16,
+      borderTopColor: '#3498db',
+      width: 120,
+      height: 120,
+      transform: [{ rotate: '45deg'}]
     }
   }
 };

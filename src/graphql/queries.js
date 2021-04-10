@@ -15,6 +15,7 @@ export const GET_REPOSITORIES = gql`
           ratingAverage
           reviewCount
           ownerAvatarUrl
+          url
         }
       }
     }
@@ -33,6 +34,7 @@ export const GET_REPOSITORY = gql`
       ratingAverage
       reviewCount
       ownerAvatarUrl
+      url
     }
   }
 `;
