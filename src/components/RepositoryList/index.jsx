@@ -2,15 +2,13 @@ import React from 'react';
 import { SafeAreaView, View, StyleSheet } from 'react-native';
 
 import useRepositories from '../../hooks/useRepositories';
+
+import ListItemSeparator from '../Shared/ListItemSeparator';
+import ScreenLoader from '../ScreenLoader';
 import RepositoryListContainer from './RepositoryListContainer';
 import RepositoryItem from './RepositoryItem';
-import Text from '../Shared/Text';
-import ScreenLoader from '../ScreenLoader'
 
 const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-  },
   container: {
     flex: 1,
   },
@@ -18,8 +16,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
   const { repositories } = useRepositories();
@@ -45,7 +41,7 @@ const RepositoryList = () => {
   return (
     <SafeAreaView style={styles.container}>
       { !repositoryNodes.length && <ScreenLoader />}
-      <RepositoryListContainer repositories={repositories} ItemSeparator={ItemSeparator} renderItem={renderItem} />
+      <RepositoryListContainer repositories={repositories} ItemSeparator={ListItemSeparator} renderItem={renderItem} />
     </SafeAreaView>
   );
 };

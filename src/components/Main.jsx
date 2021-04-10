@@ -4,11 +4,11 @@ import { Route, Switch, Redirect, useParams } from 'react-router-native';
 
 import AppBar from './AppBar/index';
 import RepositoryList from './RepositoryList';
-import RepositoryItem from './RepositoryList/RepositoryItem';
 import SignIn from './SignIn';
 import ScreenLoader from '../components/ScreenLoader';
 
 import useRepository from '../hooks/useRepository';
+import SingleRepository from './SingleRepository/SingleRepository'
 
 const styles = StyleSheet.create({
   container: {
@@ -25,19 +25,7 @@ const Repository = () => {
   if (!repository) return <ScreenLoader />
 
   return (
-    <RepositoryItem
-      singleItem={true}
-      id={repository.id}
-      avtImage={repository.ownerAvatarUrl}
-      fullName={repository.fullName}
-      description={repository.description}
-      language={repository.language}
-      stars={repository.stargazersCount}
-      forks={repository.forksCount}
-      reviews={repository.reviewCount}
-      ratings={repository.ratingAverage}
-      url={repository.url}
-    />
+    <SingleRepository repository={repository} />
   )
 
 }

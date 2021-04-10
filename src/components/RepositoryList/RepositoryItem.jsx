@@ -10,7 +10,12 @@ import theme from '../../theme';
 const styles = StyleSheet.create({
   item: {
     backgroundColor: 'white',
-    paddingVertical: 10
+    paddingVertical: 10,
+  },
+  itemWithReview: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    marginBottom: 12
   },
   itemHeader: {
     flexDirection: 'row',
@@ -116,7 +121,7 @@ const RepositoryItem = ({ singleItem, id, avtImage, fullName, description, langu
           <Text style={styles.backNavText} fontWeight="bold" fontSize="title">Back to repositories</Text>
         </View>
 
-        <View style={styles.item}>
+        <View style={styles.itemWithReview}>
           <View style={styles.itemHeader}>
             <View style={styles.itemHeaderA}>
               <Image style={styles.itemImage} source={{ uri: avtImage}} />
@@ -206,58 +211,7 @@ const RepositoryItem = ({ singleItem, id, avtImage, fullName, description, langu
           </View>
         </TouchableHighlight>
         :
-        <View>
-          <View style={styles.backNavView}>
-            <BorderlessButton style={styles.backNavIcon} onPress={handleGoBack}>
-              <Feather name="arrow-left" size={36} color="#eee" />
-            </BorderlessButton>
-            <Text style={styles.backNavText} fontWeight="bold" fontSize="title">Back to repositories</Text>
-          </View>
-
-          <View style={styles.item}>
-
-            <View style={styles.itemHeader}>
-              <View style={styles.itemHeaderA}>
-                <Image style={styles.itemImage} source={{ uri: avtImage}} />
-              </View>
-              <View style={styles.itemHeaderB}>
-                <Text fontWeight="bold" fontSize="title" style={styles.itemPaddingBottom}>{fullName}</Text>
-                <Text fontSize="subheading" color="textSecondary" style={styles.itemPaddingBottom}>{description}</Text>
-                <View style={styles.itemLanguage}>
-                  <Text color="textWhite" fontWeight="bold" style={{ alignSelf: 'center'}}>{language}</Text>
-                </View>
-              </View>
-            </View>
-
-            <View style={styles.itemBody}>
-              <View style={styles.itemDetail}>
-                <Text fontSize="subheading" fontWeight="bold">{displayCount(stars)}</Text>
-                <Text fontSize="subheading" color="textSecondary">Stars</Text>
-              </View>
-              <View style={styles.itemDetail}>
-                <Text fontSize="subheading" fontWeight="bold">{displayCount(forks)}</Text>
-                <Text fontSize="subheading" color="textSecondary">Forks</Text>
-              </View>
-              <View style={styles.itemDetail}>
-                <Text fontSize="subheading" fontWeight="bold">{reviews}</Text>
-                <Text fontSize="subheading" color="textSecondary">Reviews</Text>
-              </View>
-              <View style={styles.itemDetail}>
-                <Text fontSize="subheading" fontWeight="bold">{ratings}</Text>
-                <Text fontSize="subheading" color="textSecondary">Rating</Text>
-              </View>
-            </View>
-
-            <View style={styles.itemButton}>
-              <Button
-                title="Open in Github"
-                color={theme.colors.primary}
-                onPress={handleGoToGithub}
-                accessibilityLabel="Open repository link in Github"
-              />
-            </View>
-          </View>
-        </View>
+        <SingleRepo />
       }
     </View>
   );
