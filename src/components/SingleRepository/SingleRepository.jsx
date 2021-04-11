@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
+import { format, parseISO } from 'date-fns'
 
 import useReviews from '../../hooks/useReviews';
 
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
   reviewAside: {
     flex: 0.15,
     paddingLeft: 5,
+    paddingTop: 5,
     alignItems: 'center'
   },
   reviewMain: {
@@ -33,8 +35,11 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 2,
     borderColor: theme.colors.primary,
-    borderRadius: 100,
+    borderRadius: 20,
     justifyContent: 'center'
+  },
+  reviewText: {
+    padding: 2
   }
 });
 
@@ -59,15 +64,16 @@ const RepositoryInfo = ({ repository }) => {
 
 const ReviewItem = ({ review }) => {
   // Single review item
+
   return (
     <View style={styles.reviewItem}>
       <View style={styles.reviewAside}>
         <Text style={styles.ratingCircle} fontWeight="bold">{review.rating}</Text>
       </View>
       <View style={styles.reviewMain}>
-        <Text>{review.user.username}</Text>
-        <Text color="textSecondary" fontSize="subheading">{review.createdAt}</Text>
-        <Text>{review.text}</Text>
+        <Text fontWeight="bold" fontSize="subheading">{review.user.username}</Text>
+        <Text color="textSecondary" fontSize="subheading">{format(parseISO(review.createdAt), 'MM.dd.yyyy')}</Text>
+        <Text style={styles.reviewText}>{review.text}</Text>
       </View>
     </View>
   )

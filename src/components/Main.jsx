@@ -35,14 +35,14 @@ const Main = () => {
     <View style={styles.container}>
       <AppBar />
       <Switch>
+        <Route path="/signin" exact>
+          <SignIn />
+        </Route>
         <Route path="/" exact>
           <RepositoryList />
         </Route>
-        <Route path="/:id">
+        <Route path="/:id" exact>
           <Repository />
-        </Route>
-        <Route path="/signin" exact>
-          <SignIn />
         </Route>
         <Redirect to="/" />
       </Switch>
