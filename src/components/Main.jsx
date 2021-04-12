@@ -3,12 +3,13 @@ import { StyleSheet, View } from 'react-native';
 import { Route, Switch, Redirect, useParams } from 'react-router-native';
 
 import AppBar from './AppBar/index';
-import RepositoryList from './RepositoryList';
-import SignIn from './SignIn';
 import ScreenLoader from '../components/ScreenLoader';
+import SignIn from './SignIn';
+import RepositoryList from './RepositoryList';
+import SingleRepository from './SingleRepository/SingleRepository';
+import CreateReview from './CreateReview';
 
 import useRepository from '../hooks/useRepository';
-import SingleRepository from './SingleRepository/SingleRepository'
 
 const styles = StyleSheet.create({
   container: {
@@ -37,6 +38,9 @@ const Main = () => {
       <Switch>
         <Route path="/signin" exact>
           <SignIn />
+        </Route>
+        <Route path="/createreview" exact>
+          <CreateReview />
         </Route>
         <Route path="/" exact>
           <RepositoryList />

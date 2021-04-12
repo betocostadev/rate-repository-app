@@ -52,6 +52,12 @@ const AppBar = () => {
             <AppBarTab name={'Repositories'} />
           </View>
           {
+            authorizedUser &&
+            <View style={styles.menuItem}>
+              <AppBarTab name={'Create Review'} />
+            </View>
+          }
+          {
             !authorizedUser
             ? (
                 <View style={styles.menuItem}>
