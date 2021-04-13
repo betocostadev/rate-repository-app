@@ -5,9 +5,11 @@ import { useHistory } from 'react-router-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
+import ReviewSuccess from './ReviewSuccess';
 import Text from '../Shared/Text';
 import theme from '../../theme';
 import FormikTextInput from '../Shared/FormikTextInput';
+import useCreateReview from '../../hooks/useCreateReview';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,17 +30,17 @@ const styles = StyleSheet.create({
 });
 
 const initialValues = {
-  owner: '',
-  repository: '',
+  ownerName: '',
+  repositoryName: '',
   rating: '',
-  review: ''
+  text: ''
 };
 
 const SignInSchema = Yup.object().shape({
-  owner: Yup.string()
+  ownerName: Yup.string()
     .min(2, 'Owner name is too short! (min 2)')
     .required('Repository owner name is required'),
-  repository: Yup.string()
+  repositoryName: Yup.string()
     .min(2, 'Repository name is too short! (min 2)')
     .required('Repository name is required'),
   rating: Yup.number()
@@ -47,7 +49,7 @@ const SignInSchema = Yup.object().shape({
     .min(0, 'Min rating is 0!')
     .max(100, 'Max rating is 100!')
     .required('Rating is required'),
-  review: Yup.string()
+  text: Yup.string()
 });
 
 const FormContainer = ({ onSubmit }) => {
@@ -55,14 +57,14 @@ const FormContainer = ({ onSubmit }) => {
     <View style={styles.container}>
       <View style={styles.formField}>
         <FormikTextInput
-          name="owner"
+          name="ownerName"
           placeholder="Repository owner name"
           textContentType="none"
         />
       </View>
       <View style={styles.formField}>
         <FormikTextInput
-          name="repository"
+          name="repositoryName"
           placeholder="Repository name"
           textContentType="none"
         />
@@ -77,7 +79,7 @@ const FormContainer = ({ onSubmit }) => {
       </View>
       <View style={styles.formFieldReview}>
         <FormikTextInput
-          name="review"
+          name="text"
           multiline
           placeholder="Write your review"
           textContentType="none"
@@ -96,8 +98,9 @@ const FormContainer = ({ onSubmit }) => {
 const ReviewForm = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  // const [signIn] = useSignIn();
-  // const history = useHistory();
+  const [reviewSuccess, setReviewSuccess] = useState(false);
+  const [createReview] = useCreateReview();
+  const history = useHistory();
 
   const errorWarning = e => {
     setError(true);
@@ -112,23 +115,22 @@ const ReviewForm = () => {
   };
 
   const onSubmit = async values => {
-    const { owner, repository, rating, review } = values;
-    // Handle Sign In
+    const { repositoryName, ownerName, rating, text } = values;
 
-    console.log(values)
-    // if (username && username.length && password && password.length) {
-    //   try {
-    //     const login = await signIn({ username, password });
+    if (repositoryName && repositoryName.length && ownerName && ownerName.length && rating) {
+      try {
+        const review = await createReview({ repositoryName, ownerName, rating: parseInt(rating), text });
 
-    //     if (login && login.message) {
-    //       errorWarning(login);
-    //     } else setTimeout(() => { history.push('/'); }, 0);
+        if (review && review.data) {
+          setReviewSuccess(true)
+          setTimeout(() => { history.push(review.data.createReview.repositoryId); }, 2500);
+        }
 
-    //   } catch (e) {
-    //     errorWarning(e);
-    //     console.log(e);
-    //   }
-    // }
+      } catch (e) {
+        errorWarning(e);
+        console.log(e);
+      }
+    }
   };
 
 
@@ -139,11 +141,13 @@ const ReviewForm = () => {
           <Text fontWeight="bold" fontSize="subheading" color="textDanger">Oooops... {errorMessage}</Text>
         </View>
       }
-      <Formik initialValues={initialValues} validationSchema={SignInSchema} onSubmit={onSubmit}>
+      { !reviewSuccess && <Formik initialValues={initialValues} validationSchema={SignInSchema} onSubmit={onSubmit}>
         {
           ({ handleSubmit }) => <FormContainer onSubmit={handleSubmit} />
         }
       </Formik>
+      }
+      { reviewSuccess && <ReviewSuccess />}
     </View>
   );
 };
