@@ -4,7 +4,7 @@ import { GET_REVIEWS } from '../graphql/queries';
 const useReviews = id => {
   const { data, error, loading } = useQuery(GET_REVIEWS, {
     variables: { id },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: 'cache-and-network',
   });
 
   if (loading) return loading;
