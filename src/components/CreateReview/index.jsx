@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
-// import { useHistory } from 'react-router-native';
-// import { Formik } from 'formik';
-// import * as Yup from 'yup';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
-// import useSignIn from '../../hooks/useSignIn';
 import Text from '../Shared/Text';
-import theme from '../../theme';
-// import FormikTextInput from '../Shared/FormikTextInput';
+import ReviewForm from './ReviewForm';
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flexGrow: 1,
+    flexShrink: 1,
+    padding: 20,
+  },
+  description: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});
 
 const CreateReview = () => {
   return (
-    <View>
-      <Text>Create Review Page</Text>
+    <View style={styles.container}>
+      <View style={styles.description}>
+        <Text fontWeight="bold" fontSize="title">Add your review to a repository</Text>
+      </View>
+      <View>
+        <ReviewForm />
+      </View>
     </View>
   );
 };
