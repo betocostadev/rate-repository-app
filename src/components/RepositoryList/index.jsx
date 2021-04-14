@@ -7,6 +7,8 @@ import ListItemSeparator from '../Shared/ListItemSeparator';
 import ScreenLoader from '../ScreenLoader';
 import RepositoryListContainer from './RepositoryListContainer';
 import RepositoryItem from './RepositoryItem';
+import RepositorySearch from './RepositorySearch';
+import RepositoryFilter from './RepositoryFilter';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,6 +43,8 @@ const RepositoryList = () => {
   return (
     <SafeAreaView style={styles.container}>
       { !repositoryNodes.length && <ScreenLoader />}
+      <RepositorySearch />
+      <RepositoryFilter />
       <RepositoryListContainer repositories={repositories} ItemSeparator={ListItemSeparator} renderItem={renderItem} />
     </SafeAreaView>
   );
