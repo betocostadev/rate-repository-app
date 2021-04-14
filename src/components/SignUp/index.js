@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import Text from '../Shared/Text';
+import SignUpForm from './SignUpForm';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +24,9 @@ const SignUp = () => {
       <View style={styles.description}>
         <Text fontWeight="bold" style={{ fontSize: 20 }}>Welcome to Rate-Repository-App</Text>
         <Text fontSize="title">Create your account below</Text>
+      </View>
+      <View>
+        <SignUpForm />
       </View>
     </View>
   );

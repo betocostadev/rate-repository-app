@@ -36,7 +36,7 @@ const initialValues = {
   text: ''
 };
 
-const SignInSchema = Yup.object().shape({
+const CreateReviewSchema = Yup.object().shape({
   ownerName: Yup.string()
     .min(2, 'Owner name is too short! (min 2)')
     .required('Repository owner name is required'),
@@ -138,7 +138,7 @@ const ReviewForm = () => {
           <Text fontWeight="bold" fontSize="subheading" color="textDanger">Oooops... {errorMessage}</Text>
         </View>
       }
-      { !reviewSuccess && <Formik initialValues={initialValues} validationSchema={SignInSchema} onSubmit={onSubmit}>
+      { !reviewSuccess && <Formik initialValues={initialValues} validationSchema={CreateReviewSchema} onSubmit={onSubmit}>
         {
           ({ handleSubmit }) => <FormContainer onSubmit={handleSubmit} />
         }

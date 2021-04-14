@@ -25,7 +25,11 @@ const FormikTextInput = ({ name, ...props }) => {
         error={showError}
         {...props}
       />
-      {showError && <Text style={styles.errorText}>{meta.error}</Text>}
+      { showError
+          && <Text style={styles.errorText}>
+              {meta.error.includes('confirmPassword') ? 'Must be the same as your password' : meta.error}
+            </Text>
+      }
     </>
   );
 };
