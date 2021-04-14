@@ -5,6 +5,7 @@ import { Route, Switch, Redirect, useParams } from 'react-router-native';
 import AppBar from './AppBar/index';
 import ScreenLoader from '../components/ScreenLoader';
 import SignIn from './SignIn';
+import SignUp from './SignUp';
 import RepositoryList from './RepositoryList';
 import SingleRepository from './SingleRepository/SingleRepository';
 import CreateReview from './CreateReview';
@@ -23,13 +24,13 @@ const Repository = () => {
   const { id } = useParams();
   const { repository } = useRepository(id);
 
-  if (!repository) return <ScreenLoader />
+  if (!repository) return <ScreenLoader />;
 
   return (
     <SingleRepository repository={repository} />
-  )
+  );
 
-}
+};
 
 const Main = () => {
   return (
@@ -38,6 +39,9 @@ const Main = () => {
       <Switch>
         <Route path="/signin" exact>
           <SignIn />
+        </Route>
+        <Route path="/signup" exact>
+          <SignUp />
         </Route>
         <Route path="/createreview" exact>
           <CreateReview />

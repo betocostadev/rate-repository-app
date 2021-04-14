@@ -1,21 +1,32 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { Link } from 'react-router-native';
 
 import Text from '../Shared/Text';
+
+const styles = StyleSheet.create({
+  menuItem: {
+    marginLeft: 10,
+    padding: 5,
+  },
+});
 
 const Navigate = props => {
   const switchPage = () => {
     switch (props.name) {
       case 'Sign in':
-        return '/signin'
+        return '/signin';
+      case 'Sign up':
+        return '/signup';
       case 'Create Review':
-        return '/createreview'
+        return '/createreview';
       default:
-        return '/'
+        return '/';
     }
-  }
+  };
+
   return (
-    <Link to={ switchPage(props.name)}>
+    <Link to={ switchPage(props.name) }>
       <Text fontSize="title" fontWeight="bold" color="textWhiteSmoke">{props.name}</Text>
     </Link>
   );
@@ -23,7 +34,9 @@ const Navigate = props => {
 
 const AppBarTab = ({name}) => {
   return (
-    <Navigate name={name}/>
+    <View style={styles.menuItem}>
+      <Navigate name={name}/>
+    </View>
   );
 };
 

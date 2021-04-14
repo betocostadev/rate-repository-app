@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, FlatList } from 'react-native';
 import { render } from '@testing-library/react-native';
 
-export const RepositoryListContainer = ({ repositories }) => {
+const RepositoryListContainer = ({ repositories }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
@@ -101,7 +101,8 @@ describe('RepositoryList', () => {
       };
 
       // Add your test code here
-      const { debug, getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
+      // const { debug, getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
+      const { getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
 
       const repoFullName = getAllByTestId('fullName');
       const repoDescription = getAllByTestId('description');

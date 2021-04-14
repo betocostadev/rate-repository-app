@@ -1,10 +1,10 @@
 import React, { useRef }  from 'react';
 import { View, Animated } from 'react-native';
 import Text from '../Shared/Text';
-import theme from '../../theme'
+import theme from '../../theme';
 
 const SpinAnimation = (props) => {
-  const spinValue = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
+  const spinValue = useRef(new Animated.Value(0)).current;  // Initial value for opacity: 0
 
   React.useEffect(() => {
     Animated.timing(
@@ -15,12 +15,12 @@ const SpinAnimation = (props) => {
         useNativeDriver: true
       }
     ).start();
-  }, [spinValue])
+  }, [spinValue]);
 
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '2160deg']
-  })
+  });
 
   return (
     <Animated.View
@@ -29,7 +29,7 @@ const SpinAnimation = (props) => {
       {props.children}
     </Animated.View>
   );
-}
+};
 
 
 const ScreenLoader = () => {

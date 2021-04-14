@@ -10,9 +10,9 @@ const useCreateReview = () => {
     });
 
     return result;
-  }
+  };
 
   return [ createReview, result];
-}
+};
 
 export default useCreateReview;

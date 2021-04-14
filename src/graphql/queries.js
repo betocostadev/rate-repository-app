@@ -60,7 +60,7 @@ export const GET_REVIEWS = gql`
       }
     }
   }
-`
+`;
 
 export const AUTHORIZED_USER = gql`
   query {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import { format, parseISO } from 'date-fns'
+import { format, parseISO } from 'date-fns';
 
 import useReviews from '../../hooks/useReviews';
 
 import ListItemSeparator from '../Shared/ListItemSeparator';
 import Text from '../Shared/Text';
 import RepositoryItem from '../RepositoryList/RepositoryItem';
-import theme from '../../theme'
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   reviewItem: {
@@ -59,7 +59,7 @@ const RepositoryInfo = ({ repository }) => {
       ratings={repository.ratingAverage}
       url={repository.url}
     />
-  )
+  );
 };
 
 const ReviewItem = ({ review }) => {
@@ -76,12 +76,12 @@ const ReviewItem = ({ review }) => {
         <Text style={styles.reviewText}>{review.text}</Text>
       </View>
     </View>
-  )
+  );
 };
 
 const SingleRepository = ({ repository }) => {
   // ...
-  const { reviews } = useReviews(repository.id)
+  const { reviews } = useReviews(repository.id);
 
   const reviewNodes = reviews
     ? reviews.edges.map((edge) => edge.node)

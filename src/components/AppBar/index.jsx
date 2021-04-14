@@ -40,38 +40,30 @@ const AppBar = () => {
     await authStorage.removeAccessToken();
     apolloClient.resetStore();
 
-    setTimeout(() => { history.push('/signin'); }, 0);
+    setTimeout(() => { history.push('/signin'); }, 100);
   };
 
 
   return (
     <View style={styles.container}>
       <View style={styles.itemsContainer}>
+      { authorizedUser
+        ?
         <ScrollView horizontal>
+          <AppBarTab name={'Repositories'} />
+          <AppBarTab name={'Create Review'} />
           <View style={styles.menuItem}>
-            <AppBarTab name={'Repositories'} />
+            <Text fontSize="title" fontWeight="bold" color="textWhiteSmoke"
+              onPress={ onSignOut }>Sign Out</Text>
           </View>
-          {
-            authorizedUser &&
-            <View style={styles.menuItem}>
-              <AppBarTab name={'Create Review'} />
-            </View>
-          }
-          {
-            !authorizedUser
-            ? (
-                <View style={styles.menuItem}>
-                  <AppBarTab name={'Sign in'} />
-                </View>
-              )
-            : (
-                <View style={styles.menuItem}>
-                  <Text fontSize="title" fontWeight="bold" color="textWhiteSmoke"
-                    onPress={ onSignOut }>Sign Out</Text>
-                </View>
-              )
-          }
         </ScrollView>
+        :
+        <ScrollView horizontal>
+          <AppBarTab name={'Repositories'} />
+          <AppBarTab name={'Sign in'} />
+          <AppBarTab name={'Sign up'} />
+        </ScrollView>
+      }
       </View>
     </View>
   );

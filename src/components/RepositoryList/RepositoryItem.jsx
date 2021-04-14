@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, View, TouchableHighlight, Button } from 'react-native';
 import { useHistory } from 'react-router-native';
-import { BorderlessButton } from 'react-native-gesture-handler'
+import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Linking from 'expo-linking';
-import { Feather } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons';
 import Text from '../Shared/Text';
 import theme from '../../theme';
 
@@ -163,8 +163,8 @@ const RepositoryItem = ({ singleItem, id, avtImage, fullName, description, langu
             </View>
         </View>
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <View>

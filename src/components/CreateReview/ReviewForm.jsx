@@ -117,19 +117,16 @@ const ReviewForm = () => {
   const onSubmit = async values => {
     const { repositoryName, ownerName, rating, text } = values;
 
-    if (repositoryName && repositoryName.length && ownerName && ownerName.length && rating) {
-      try {
-        const review = await createReview({ repositoryName, ownerName, rating: parseInt(rating), text });
-
-        if (review && review.data) {
-          setReviewSuccess(true)
-          setTimeout(() => { history.push(review.data.createReview.repositoryId); }, 2500);
-        }
-
-      } catch (e) {
-        errorWarning(e);
-        console.log(e);
+    try {
+      const review = await createReview({ repositoryName, ownerName, rating: parseInt(rating), text });
+      if (review && review.data) {
+        setReviewSuccess(true);
+        setTimeout(() => { history.push(review.data.createReview.repositoryId); }, 2500);
       }
+
+    } catch (e) {
+      errorWarning(e);
+      console.log(e);
     }
   };
 
