@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
+import { useDebounce } from 'use-debounce';
 
 import useRepositories from '../../hooks/useRepositories';
 
@@ -22,18 +23,24 @@ const styles = StyleSheet.create({
 const RepositoryList = () => {
   const [ orderBy, setOrderBy ] = useState('CREATED_AT');
   const [ orderDirection, setOrderDirection ] = useState('DESC');
+  const [ searchKeyword, setSearchKeyword ] = useState('');
+  const [ debounced ] = useDebounce(searchKeyword, 700);
 
-  const { repositories } = useRepositories({orderBy, orderDirection});
+  const { repositories } = useRepositories({ orderBy, orderDirection, searchKeyword: debounced });
 
   // Get the nodes from the edges array
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];
 
-  const filterSelector = ( value ) => {
+  const filterSelector = value => {
     const valArr = value.split(',');
     setOrderBy(valArr[0]);
     setOrderDirection(valArr[1]);
+  };
+
+  const search = value => {
+    setSearchKeyword(value)
   };
 
   const renderItem = ({ item }) => (
@@ -53,7 +60,7 @@ const RepositoryList = () => {
   return (
     <SafeAreaView style={styles.container}>
       { !repositoryNodes.length && <ScreenLoader />}
-      <RepositorySearch />
+      <RepositorySearch searchFn={search} />
       <RepositoryFilter pickerFn={filterSelector} />
       <RepositoryListContainer repositories={repositories} ItemSeparator={ListItemSeparator} renderItem={renderItem} />
     </SafeAreaView>

@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-
-import Text from '../Shared/Text';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    marginHorizontal: 8,
+    padding: 5,
   },
 });
 
-const RepositoryFilter = ( props ) => {
+const RepositoryFilter = props => {
   const [selectedFilter, setSelectedFilter] = useState('CREATED_AT,DESC');
-  const handleChangeFilter = (value) => {
-    setSelectedFilter(value)
-    props.pickerFn(value)
-    console.log('called inside repository filter.')
-    console.log('in repo filter, value is', selectedFilter)
-  }
 
+  const handleChangeFilter = value => {
+    setSelectedFilter(value);
+    props.pickerFn(value);
+  };
 
   return (
     <View style={styles.container}>
