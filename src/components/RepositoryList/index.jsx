@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 
 import useRepositories from '../../hooks/useRepositories';
@@ -20,11 +20,21 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  const [ orderBy, setOrderBy ] = useState('CREATED_AT');
+  const [ orderDirection, setOrderDirection ] = useState('DESC');
+
+  const { repositories } = useRepositories({orderBy, orderDirection});
+
   // Get the nodes from the edges array
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];
+
+  const filterSelector = ( value ) => {
+    const valArr = value.split(',');
+    setOrderBy(valArr[0]);
+    setOrderDirection(valArr[1]);
+  };
 
   const renderItem = ({ item }) => (
     <RepositoryItem
@@ -44,7 +54,7 @@ const RepositoryList = () => {
     <SafeAreaView style={styles.container}>
       { !repositoryNodes.length && <ScreenLoader />}
       <RepositorySearch />
-      <RepositoryFilter />
+      <RepositoryFilter pickerFn={filterSelector} />
       <RepositoryListContainer repositories={repositories} ItemSeparator={ListItemSeparator} renderItem={renderItem} />
     </SafeAreaView>
   );
