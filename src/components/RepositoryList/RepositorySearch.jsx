@@ -10,11 +10,18 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     marginTop: 6,
-    marginHorizontal: 16,
+    marginHorizontal: 18,
     backgroundColor: '#fff',
-    borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
     borderRadius: 5,
-    paddingLeft: 5
+    paddingLeft: 10
   },
 });
 
