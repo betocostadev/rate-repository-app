@@ -25,9 +25,13 @@ const RepositoryList = () => {
   const [ orderBy, setOrderBy ] = useState('CREATED_AT');
   const [ orderDirection, setOrderDirection ] = useState('DESC');
   const [ searchKeyword, setSearchKeyword ] = useState('');
-  const [ debounced ] = useDebounce(searchKeyword, 700);
+  const [ debounced ] = useDebounce(searchKeyword, 600);
 
-  const { repositories } = useRepositories({ orderBy, orderDirection, searchKeyword: debounced });
+  const { repositories, fetchMore } = useRepositories({
+    first: 6,
+    orderBy: orderBy,
+    orderDirection: orderDirection,
+    searchKeyword: debounced });
 
   // Get the nodes from the edges array
   const repositoryNodes = repositories
@@ -42,6 +46,11 @@ const RepositoryList = () => {
 
   const search = value => {
     setSearchKeyword(value)
+  };
+
+  const onEndReach = () => {
+    // console.log('You have reached the end of the list');
+    fetchMore();
   };
 
   const renderItem = ({ item }) => (
@@ -64,7 +73,11 @@ const RepositoryList = () => {
       <RepositoryFilter pickerFn={filterSelector} />
       { !repositories && <ScreenLoader />}
       { !repositoryNodes.length && <RepositoryNotFound /> }
-      <RepositoryListContainer repositories={repositories} ItemSeparator={ListItemSeparator} renderItem={renderItem} />
+      <RepositoryListContainer
+        repositories={repositories}
+        onEndReach={onEndReach}
+        ItemSeparator={ListItemSeparator}
+        renderItem={renderItem} />
     </SafeAreaView>
   );
 };
