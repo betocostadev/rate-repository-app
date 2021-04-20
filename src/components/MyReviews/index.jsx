@@ -2,6 +2,8 @@ import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { format, parseISO } from 'date-fns';
 
+import useUserData from '../../hooks/useUserData';
+
 import ListItemSeparator from '../Shared/ListItemSeparator';
 import Text from '../Shared/Text';
 import theme from '../../theme';
@@ -49,7 +51,7 @@ const Review = ({ review }) => {
         <Text style={styles.ratingCircle} fontWeight="bold">{review.rating}</Text>
       </View>
       <View style={styles.reviewMain}>
-        <Text fontSize="subheading" fontWeight="bold" style={styles.reviewText}>{review.fullName}</Text>
+        <Text fontSize="subheading" fontWeight="bold" style={styles.reviewText}>{review.repositoryId}</Text>
         <Text color="textSecondary" fontSize="subheading">{format(parseISO(review.createdAt), 'MM.dd.yyyy')}</Text>
         <Text style={styles.reviewText}>{review.text}</Text>
       </View>
@@ -57,40 +59,26 @@ const Review = ({ review }) => {
   );
 };
 
-const MyReviews = ({ repository }) => {
-  // const { reviews, fetchMore } = useReviews({ id: repository.id, first: 6});
+const MyReviews = () => {
+  const { userReviews, fetchMore } = useUserData({ includeReviews: true, first: 8});
 
-  // const reviewNodes = reviews
-  //   ? reviews.edges.map((edge) => edge.node)
-  //   : [];
+  const reviewNodes = userReviews
+    ? userReviews.edges.map((edge) => edge.node)
+    : [];
 
-  // const onEndReach = () => {
-  //   fetchMore();
-  // };
-
-  const myReviews = [
-    {
-      "id": "753f3e99-e73a-43a3-9a50-b30d7727c0eb.jaredpalmer.formik",
-      "fullName": "jaredpalmer/formik",
-      "text": "Lorem ipsum dolor sit amet, per brute apeirian ei. Malis facilisis vel ex, ex vivendo signiferumque nam, nam ad natum electram constituto. Causae latine at sea, ex nec ullum ceteros, est ut dicant splendide. Omnis electram ullamcorper est ut.",
-      "rating": 96,
-      "createdAt": "2021-03-13T06:13:37.799Z",
-    },
-    {
-      "id": "9b9d927e-2ee9-4f93-b96b-c8f677c63a5f.jaredpalmer.formik",
-      "fullName": "jaredpalmer/formik",
-      "text": "Lorem ipsum dolor sit amet, per brute apeirian ei. Malis facilisis vel ex, ex vivendo signiferumque nam, nam ad natum electram constituto. Causae latine at sea, ex nec ullum ceteros, est ut dicant splendide. Omnis electram ullamcorper est ut.",
-      "rating": 89,
-      "createdAt": "2021-03-13T07:13:37.799Z",
-    }
-  ]
+  const onEndReach = () => {
+    console.log('endReached!')
+    fetchMore();
+  };
 
   return (
     <FlatList
-      data={myReviews}
+      data={reviewNodes}
       ItemSeparatorComponent={ListItemSeparator}
       renderItem={({ item }) => <Review review={item} />}
       keyExtractor={({ id }) => id}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.3}
     />
   );
 };

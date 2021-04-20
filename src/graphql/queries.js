@@ -94,3 +94,29 @@ export const AUTHORIZED_USER = gql`
     }
   }
 `;
+
+export const GET_AUTHORIZED_USER = gql`
+  query getAuthorizedUser($includeReviews: Boolean = false){
+    authorizedUser {
+      id
+      username
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            repositoryId
+            rating
+            createdAt
+            text
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+`;
