@@ -9,6 +9,7 @@ import SignUp from './SignUp';
 import RepositoryList from './RepositoryList';
 import SingleRepository from './SingleRepository/SingleRepository';
 import CreateReview from './CreateReview';
+import MyReviews from './MyReviews';
 
 import useRepository from '../hooks/useRepository';
 
@@ -45,6 +46,9 @@ const Main = () => {
         </Route>
         <Route path="/createreview" exact>
           <CreateReview />
+        </Route>
+        <Route path="/myreviews" exact>
+          <MyReviews />
         </Route>
         <Route path="/" exact>
           <RepositoryList />

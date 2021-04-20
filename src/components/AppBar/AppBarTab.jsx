@@ -6,7 +6,7 @@ import Text from '../Shared/Text';
 
 const styles = StyleSheet.create({
   menuItem: {
-    marginLeft: 10,
+    marginLeft: 6,
     padding: 5,
   },
 });
@@ -18,8 +18,10 @@ const Navigate = props => {
         return '/signin';
       case 'Sign up':
         return '/signup';
-      case 'Create Review':
+      case 'Create a review':
         return '/createreview';
+      case 'My reviews':
+        return '/myreviews'
       default:
         return '/';
     }

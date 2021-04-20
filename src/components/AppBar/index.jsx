@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#24292e',
-    height: 75,
+    height: 85,
   },
   itemsContainer: {
     display: 'flex',
@@ -51,7 +51,8 @@ const AppBar = () => {
         ?
         <ScrollView horizontal>
           <AppBarTab name={'Repositories'} />
-          <AppBarTab name={'Create Review'} />
+          <AppBarTab name={'Create a review'} />
+          <AppBarTab name={'My reviews'} />
           <View style={styles.menuItem}>
             <Text fontSize="title" fontWeight="bold" color="textWhiteSmoke"
               onPress={ onSignOut }>Sign Out</Text>
