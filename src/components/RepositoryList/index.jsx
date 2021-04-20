@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { useDebounce } from 'use-debounce';
 
 import useRepositories from '../../hooks/useRepositories';
@@ -10,7 +10,7 @@ import RepositoryListContainer from './RepositoryListContainer';
 import RepositoryItem from './RepositoryItem';
 import RepositorySearch from './RepositorySearch';
 import RepositoryFilter from './RepositoryFilter';
-import RepositoryNotFound from './RepositoryNotFound'
+import RepositoryNotFound from './RepositoryNotFound';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,7 +45,7 @@ const RepositoryList = () => {
   };
 
   const search = value => {
-    setSearchKeyword(value)
+    setSearchKeyword(value);
   };
 
   const onEndReach = () => {

@@ -29,7 +29,7 @@ const useReviews = variables => {
     fetchMore: handleFetchMore,
     loading,
     ...result
-  }
+  };
 };
 
 export default useReviews;

@@ -32,4 +32,4 @@ export const CREATE_USER = gql`
         username
       }
   }
-`
+`;

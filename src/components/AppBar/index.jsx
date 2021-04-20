@@ -54,7 +54,7 @@ const AppBar = () => {
           <AppBarTab name={'Create a review'} />
           <AppBarTab name={'My reviews'} />
           <View style={styles.menuItem}>
-            <Text fontSize="title" fontWeight="bold" color="textWhiteSmoke"
+            <Text style={{ marginRight: 12 }} fontSize="title" fontWeight="bold" color="textWhiteSmoke"
               onPress={ onSignOut }>Sign Out</Text>
           </View>
         </ScrollView>

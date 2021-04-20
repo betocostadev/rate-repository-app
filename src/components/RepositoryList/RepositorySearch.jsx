@@ -43,7 +43,7 @@ const RepositorySearch = props => {
       placeholder="Search here..."
       />
     </View>
-  )
-}
+  );
+};
 
 export default RepositorySearch;

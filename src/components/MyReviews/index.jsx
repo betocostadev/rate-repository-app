@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { format, parseISO } from 'date-fns';
 
-import useUserData from '../../hooks/useUserData';
+import useUserReviews from '../../hooks/useUserReviews';
 
 import ListItemSeparator from '../Shared/ListItemSeparator';
 import Text from '../Shared/Text';
@@ -60,14 +60,13 @@ const Review = ({ review }) => {
 };
 
 const MyReviews = () => {
-  const { userReviews, fetchMore } = useUserData({ includeReviews: true, first: 8});
+  const { userReviews, fetchMore } = useUserReviews({ first: 10 });
 
   const reviewNodes = userReviews
     ? userReviews.edges.map((edge) => edge.node)
     : [];
 
   const onEndReach = () => {
-    console.log('endReached!')
     fetchMore();
   };
 

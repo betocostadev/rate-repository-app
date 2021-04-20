@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
-import { GET_AUTHORIZED_USER } from '../graphql/queries';
+import { GET_USER_REVIEWS } from '../graphql/queries';
 
-const useUserData = variables => {
-  const { data, userReviews, error, loading, fetchMore, ...result } = useQuery(GET_AUTHORIZED_USER, {
+const useUserReviews = variables => {
+  const { data, error, loading, fetchMore, ...result } = useQuery(GET_USER_REVIEWS, {
     variables: variables,
     fetchPolicy: 'cache-and-network',
   });
@@ -25,11 +25,11 @@ const useUserData = variables => {
   if (error) return error;
 
   return {
-    userReviews: data?.authorizedUser.reviews ? data.authorizedUser.reviews : null,
+    userReviews: data?.authorizedUser.reviews,
     fetchMore: handleFetchMore,
     loading,
     ...result
-  }
+  };
 };
 
-export default useUserData;
+export default useUserReviews;

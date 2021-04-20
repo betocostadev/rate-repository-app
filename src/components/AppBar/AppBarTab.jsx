@@ -21,7 +21,7 @@ const Navigate = props => {
       case 'Create a review':
         return '/createreview';
       case 'My reviews':
-        return '/myreviews'
+        return '/myreviews';
       default:
         return '/';
     }

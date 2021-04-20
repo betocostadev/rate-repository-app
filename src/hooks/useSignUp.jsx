@@ -10,12 +10,12 @@ const useSignUp = () => {
       return user;
 
     } catch (error) {
-      console.log(e);
-      return e;
+      console.log(error);
+      return error;
     }
   };
 
-  return [signUp, result]
+  return [signUp, result];
 };
 
 export default useSignUp;

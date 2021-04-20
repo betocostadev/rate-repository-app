@@ -95,19 +95,19 @@ export const AUTHORIZED_USER = gql`
   }
 `;
 
-export const GET_AUTHORIZED_USER = gql`
-  query getAuthorizedUser($includeReviews: Boolean = false){
+export const GET_USER_REVIEWS = gql`
+  query getAuthorizedUser($first: Int, $after: String) {
     authorizedUser {
       id
       username
-      reviews @include(if: $includeReviews) {
+      reviews (first: $first, after: $after) {
         edges {
           node {
             id
             repositoryId
+            text
             rating
             createdAt
-            text
           }
           cursor
         }
@@ -120,3 +120,25 @@ export const GET_AUTHORIZED_USER = gql`
     }
   }
 `;
+
+// export const GET_AUTHORIZED_USER = gql`
+//   query getAuthorizedUser($includeReviews: Boolean = false) {
+//     authorizedUser {
+//       id
+//       username
+//       reviews @include(if: $includeReviews) {
+//         edges {
+//           node {
+//             id
+//             repositoryId
+//             rating
+//             createdAt
+//             text
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
+
+
