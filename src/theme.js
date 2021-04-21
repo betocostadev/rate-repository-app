@@ -12,6 +12,7 @@ const theme = {
     textWhite: 'white',
     textDanger: 'red',
     primary: '#0366d6',
+    danger: '#d6394c'
   },
   fontSizes: {
     body: 14,
