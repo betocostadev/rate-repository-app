@@ -21,7 +21,7 @@ const RepositoryFilter = props => {
     <View style={styles.container}>
       <Picker
         selectedValue={selectedFilter}
-        onValueChange={(itemValue, itemIndex) =>
+        onValueChange={(itemValue) =>
           handleChangeFilter(itemValue)
         }>
         <Picker.Item label="Latest repositories" value="CREATED_AT,DESC" />

@@ -63,17 +63,18 @@ const Review = ({ review, refetch }) => {
   const [ deleteReview ] = useDeleteReview();
 
   const viewRepository = () => {
-    history.push(review.repositoryId)
-  }
+    history.push(review.repositoryId);
+  };
+
   const confirmDelete = async id => {
     try {
       const review = await deleteReview({ id });
       if (review) refetch();
-
     } catch (e) {
       console.log(e);
     }
-  }
+  };
+
   const deleteReviewDialog = id => {
     Alert.alert(
       "Delete review",
@@ -87,7 +88,8 @@ const Review = ({ review, refetch }) => {
         { text: "OK", onPress: () => confirmDelete(id) }
       ]
     );
-  }
+  };
+
   return (
     <View style={styles.reviewContainer}>
       <View style={styles.reviewItem}>
